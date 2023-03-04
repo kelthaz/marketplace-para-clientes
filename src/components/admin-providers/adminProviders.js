@@ -6,9 +6,10 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
 
-const  AdminProviders = ()  => {
+const  AdminProviders = ({dataToSend})  => {
 
   const [showForm, setShowForm] = useState(false)
+  const [provider, setProvider] = useState(false)
 
    const showFormFunction = () => {
       if (showForm === false){
@@ -22,6 +23,17 @@ const  AdminProviders = ()  => {
      }
    }
 
+
+   const editProvider = (value) => {
+     if (value) {
+      setShowForm(true)
+      setProvider(value)
+      
+     }
+    // setProvider(dataProvider2)
+    // setPrueba(dataProvider2)
+  }
+   
     return (
       <>  
         <Grid container justifyContent={'center'} >
@@ -35,7 +47,7 @@ const  AdminProviders = ()  => {
           
           {showForm ?
             <Grid item xs={10}>
-              <AdminForm  showTableFunction={showTableFunction}/>
+              <AdminForm  showTableFunction={showTableFunction} dataProvider={provider}/>
             </Grid>
              :
             <Grid container justifyContent={'center'}>
@@ -43,8 +55,8 @@ const  AdminProviders = ()  => {
             <Grid item xs={2} mb={2}>
               <Button variant="contained" onClick={showFormFunction}>Nuevo registro</Button>
             </Grid>
-            <Grid item xs={10}>
-              <TableAdminProviders />
+            <Grid item xs={8}>
+              <TableAdminProviders editProvider={editProvider}/>
             </Grid>
            </Grid>
           }

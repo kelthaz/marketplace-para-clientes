@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 
- const AdminForm = ( {showTableFunction} ) => {
+ const AdminForm = ( {showTableFunction,dataProvider} ) => {
 
     const [showTable, setShowTable] = useState(false)
     const [name, setName] = useState('')
@@ -23,6 +23,8 @@ import TextField from '@mui/material/TextField';
    const onChangeName = (event) => { setName(event.target.value)} 
    const onChangeUserName = (event) => { setUserName(event.target.value)}
    const onChangeRol = (event) => { setRol(event.target.value)}
+   
+   console.log('dataProvider22222',dataProvider)
 
   return (
     <Grid container justifyContent={'center'} >
@@ -36,9 +38,9 @@ import TextField from '@mui/material/TextField';
                 noValidate
                 autoComplete="off"
                 >
-                <TextField id="Nombre" label="Nombre" variant="outlined" onChange={onChangeName}  />
-                <TextField id="usuario" label="usuario" variant="outlined" onChange={onChangeUserName} />
-                <TextField id="Rol" label="Rol" variant="outlined" onChange={onChangeRol} />
+                <TextField id="Nombre" label="Nombre" variant="outlined" onChange={onChangeName} value={dataProvider.nombre}  />
+                <TextField id="usuario" label="usuario" variant="outlined" onChange={onChangeUserName} value={dataProvider.usuario}/>
+                <TextField id="Rol" label="Rol" variant="outlined" onChange={onChangeRol} value={dataProvider.rol}/>
             </Box>
         </Grid>
         <Grid item xs={2} />

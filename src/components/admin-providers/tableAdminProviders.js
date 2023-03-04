@@ -1,4 +1,5 @@
 import * as React from 'react';
+import{ useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,46 +7,52 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+ const TableAdminProviders = ({ editProvider }) => {
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+  const [data, setData] = useState([])
 
-const editProvider = ((obj) => {
-    console.log('obj',obj)
-})
+  const getData = () => {
+    axios.get('http://localhost:3000/adminProviders')
+      .then(resp => {
+        setData(resp.data)
+        console.log('Esta es la data que esta respondiendeo el server', resp.data)
+      })
+      .catch(error => {
+        console.log('Hubo un error consultado los datos', error)
+      })
+   }
 
- const TableAdminProviders = () => {
+  useEffect(() => {
+    getData()
+  }, []);
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ width: 900 }} aria-label="simple table">
+      <Table sx={{ width: 810 }} >
         <TableHead>
           <TableRow>
             <TableCell>id</TableCell>
-            <TableCell align="right">Nombre</TableCell>
-            <TableCell align="right">Usuario</TableCell>
-            <TableCell align="right">Rol</TableCell>
+            <TableCell>Nombre</TableCell>
+            <TableCell>Usuario</TableCell>
+            <TableCell>Rol</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data.map((row) => (
             <TableRow
-              key={row.name}
+              key="{row.id}"
               onClick={() => {editProvider(row)}}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.idproviders}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell component="th" scope="row">
+                {row.nombre}
+              </TableCell>
+              <TableCell>{row.usuario}</TableCell>
+              <TableCell>{row.rol}</TableCell>
             </TableRow>
           ))}
         </TableBody>
