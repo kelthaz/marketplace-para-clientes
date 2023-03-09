@@ -5,26 +5,36 @@ import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 
  const AdminForm = ( {showTableFunction,dataProvider} ) => {
 
-    const [showTable, setShowTable] = useState(false)
-    const [name, setName] = useState('')
-    const [userName, setUserName] = useState('')
-    const [rol, setRol] = useState('')
+    const [name, setName] = useState(dataProvider.nombre)
+    const [userName, setUserName] = useState(dataProvider.usuario)
+    const [rol, setRol] = useState(dataProvider.rol)
 
-   const saveData = () => {
-      if (showTable === false){
-        setShowTable(true)
-      } 
+    const saveData = () => {
+     axios.post('http://localhost:3000/adminProviders/create-provider', {
+        nombre: name,
+        usuario: userName,
+        rol: rol
+     }).then((response) => {
+        console.log('response',response)
+     })
+
+
    }
 
    const onChangeName = (event) => { setName(event.target.value)} 
    const onChangeUserName = (event) => { setUserName(event.target.value)}
    const onChangeRol = (event) => { setRol(event.target.value)}
-   
-   console.log('dataProvider22222',dataProvider)
+
+    const cancelButton = () =>{
+        setName('')
+        setUserName('')
+        setRol('')
+    }
 
   return (
     <Grid container justifyContent={'center'} >
@@ -38,17 +48,17 @@ import TextField from '@mui/material/TextField';
                 noValidate
                 autoComplete="off"
                 >
-                <TextField id="Nombre" label="Nombre" variant="outlined" onChange={onChangeName} value={dataProvider.nombre}  />
-                <TextField id="usuario" label="usuario" variant="outlined" onChange={onChangeUserName} value={dataProvider.usuario}/>
-                <TextField id="Rol" label="Rol" variant="outlined" onChange={onChangeRol} value={dataProvider.rol}/>
+                <TextField id="Nombre" label="Nombre" variant="outlined" onChange={onChangeName} value={name}  />
+                <TextField id="usuario" label="usuario" variant="outlined" onChange={onChangeUserName} value={userName}/>
+                <TextField id="Rol" label="Rol" variant="outlined" onChange={onChangeRol} value={rol}/>
             </Box>
         </Grid>
         <Grid item xs={2} />
         <Grid item xs={2} mt={4}>
-            <Button variant="contained" color={'error'} onClick={showTableFunction}>Cancelar</Button>
+            <Button variant="contained" color={'error'} onClick={() => { showTableFunction(); cancelButton()} }>Cancelar</Button>
         </Grid>
         <Grid item xs={6} mt={4}>
-            <Button variant="contained" color={'success'} onClick={saveData}>Guardar</Button>
+            <Button variant="contained" color={'success'} onClick={() => {saveData(); showTableFunction()} }>Guardar</Button>
         </Grid>
     </Grid>
   );

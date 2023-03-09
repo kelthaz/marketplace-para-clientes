@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 const  AdminProviders = ({dataToSend})  => {
 
   const [showForm, setShowForm] = useState(false)
-  const [provider, setProvider] = useState(false)
+  const [provider, setProvider] = useState({})
 
    const showFormFunction = () => {
       if (showForm === false){
@@ -18,7 +18,8 @@ const  AdminProviders = ({dataToSend})  => {
    }
 
    const showTableFunction = (value) => {
-     if (value) {
+    setProvider({})
+     if (value === undefined) {
       setShowForm(false)
      }
    }
@@ -28,10 +29,7 @@ const  AdminProviders = ({dataToSend})  => {
      if (value) {
       setShowForm(true)
       setProvider(value)
-      
      }
-    // setProvider(dataProvider2)
-    // setPrueba(dataProvider2)
   }
    
     return (

@@ -17,7 +17,6 @@ import axios from 'axios';
     axios.get('http://localhost:3000/adminProviders')
       .then(resp => {
         setData(resp.data)
-        console.log('Esta es la data que esta respondiendeo el server', resp.data)
       })
       .catch(error => {
         console.log('Hubo un error consultado los datos', error)
@@ -41,7 +40,7 @@ import axios from 'axios';
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key="{row.id}"
+              key={row.idproviders}
               onClick={() => {editProvider(row)}}
            
             >
