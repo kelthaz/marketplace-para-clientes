@@ -12,11 +12,13 @@ import axios from 'axios';
  const TableAdminProviders = ({ editProvider }) => {
 
   const [data, setData] = useState([])
+  const [edit, setEdit] = useState(false)
 
   const getData = () => {
     axios.get('http://localhost:3000/adminProviders')
       .then(resp => {
         setData(resp.data)
+        setEdit(false)
       })
       .catch(error => {
         console.log('Hubo un error consultado los datos', error)
@@ -41,7 +43,7 @@ import axios from 'axios';
           {data.map((row) => (
             <TableRow
               key={row.idproviders}
-              onClick={() => {editProvider(row)}}
+              onClick={() => {editProvider({row, edit})}}
            
             >
               <TableCell component="th" scope="row">
