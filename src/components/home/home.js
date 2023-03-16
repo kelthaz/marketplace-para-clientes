@@ -3,7 +3,6 @@
 import AdminProviders from '../admin-providers/adminProviders.js'
 import ProductsAndServices from '../products-and-services/productsAndServices.js'
 import SchedulingService from '../scheduling-service/schedulingService.js'
-import UserRegistry from '../user-registry/userRegistry.js'
 import { styled } from '@mui/system';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
@@ -107,7 +106,6 @@ const  Home = ()  => {
             <Tab>Administración de proveedores</Tab>
             <Tab>Productos y servicios</Tab>
             <Tab>Agendamiento del servicio</Tab>
-            <Tab>Registro de usuario</Tab>
         </TabsList>
             <TabPanel value={0} >
                 <AdminProviders />
@@ -117,9 +115,6 @@ const  Home = ()  => {
             </TabPanel>
             <TabPanel value={2} >
                 <SchedulingService />
-            </TabPanel>
-            <TabPanel value={3} >
-                <UserRegistry />
             </TabPanel>
     </TabsUnstyled>
     </>

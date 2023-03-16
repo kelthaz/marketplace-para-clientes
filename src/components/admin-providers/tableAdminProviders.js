@@ -8,6 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
+import Button from '@mui/material/Button';
+import Edit from '@mui/icons-material/Edit';
+import Delete from '@mui/icons-material/Delete';
+import Grid from '@mui/material/Grid';
 
  const TableAdminProviders = ({ editProvider }) => {
 
@@ -25,6 +29,16 @@ import axios from 'axios';
       })
    }
 
+  const deleteItem = id => {
+    axios.put(`http://localhost:3000/adminProviders/delete-provider/${id}`)
+    .then((response) => {
+           console.log(response)
+           getData()
+       }).catch(error => {
+           console.log('error',error)
+       })
+   }
+
   useEffect(() => {
     getData()
   }, []);
@@ -37,13 +51,13 @@ import axios from 'axios';
             <TableCell>Nombre</TableCell>
             <TableCell>Usuario</TableCell>
             <TableCell>Rol</TableCell>
+            <TableCell>Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow
               key={row.idproviders}
-              onClick={() => {editProvider({row, edit})}}
            
             >
               <TableCell component="th" scope="row">
@@ -54,6 +68,18 @@ import axios from 'axios';
               </TableCell>
               <TableCell>{row.usuario}</TableCell>
               <TableCell>{row.rol}</TableCell>
+              <TableCell>
+                <Grid container>
+                  <Grid item pr={2}>
+                    <Button variant="contained" color={'error'} onClick={() => deleteItem(row.idproviders)}><Delete/></Button>
+                  
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" color={'warning'} onClick={() => {editProvider({row, edit})}}><Edit/></Button>
+                  
+                  </Grid>
+                </Grid>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
