@@ -22,7 +22,7 @@ import axios from 'axios';
         nombre: name,
         usuario: userName,
         rol: rol
-        }).then((response) => {
+     }).then((response) => {
         console.log('response',response)
         })
     }

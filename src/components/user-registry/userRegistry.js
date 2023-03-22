@@ -78,8 +78,13 @@ const  UserRegistry = ({sendDataUser})  => {
           <Grid item xs={12} ml={10} mt={4}>
             <TextField id="password" label="Contraseña" type="password" variant="outlined" onChange={onChangePassword}  />
           </Grid>
-          <Grid item xs={2} mt={4} ml={10} mb={4}>
-            <Button variant="contained" color={'success'} onClick={login}>Ingresar</Button>
+          <Grid container mb={4}>
+            <Grid item xs={2} mx={9} mt={4}>
+              <Button variant="contained" color={'primary'} onClick={() => {navigate('/')}}>Regresar</Button>
+            </Grid>
+            <Grid item xs={2} mt={4}>
+              <Button variant="contained" color={'success'} onClick={login}>Ingresar</Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
