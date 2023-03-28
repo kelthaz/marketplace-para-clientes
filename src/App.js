@@ -23,8 +23,8 @@ const  App = ()  => {
      <BrowserRouter>
         <Routes>
           <Route element={<ProtectedRoute isAllowed={isAllowed}/>}>
-              <Route path='/administracion' element={<Home />}></Route>
           </Route>
+              <Route path='/administracion' element={<Home />}></Route>
           <Route path='/login' element={<UserRegistry  sendDataUser={getUserAllowed}/>}></Route>
           <Route path='/' element={<ProductDetail />}></Route>
         </Routes>

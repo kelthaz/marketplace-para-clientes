@@ -21,31 +21,27 @@ import Checkbox from '@mui/material/Checkbox';
 const  ProductsAndServices = ()  => {
    const [data, setData] = useState([
     {
-      id:1,title: 'Template 1', description:'Esta es la descripcion del template 1', 
+      id:1,title: 'Template Technology', description:'Esta es la descripcion del template 1', 
       category: 'Technology', price: '10$', img: imgTemplate1
     },
     {
-      id:2,title: 'Template 2', description:'Esta es la descripcion del template 2', 
+      id:2,title: 'Template Bussines', description:'Esta es la descripcion del template 2', 
       category: 'Bussines', price: '20$', img: imgTemplate2 
     },
     {
-      id:3,title: 'Template 3', description:'Esta es la descripcion del template 3', 
+      id:3,title: 'Template Manager', description:'Esta es la descripcion del template 3', 
       category: 'Manager', price: '30$', img: imgTemplate3
     },
     {
-      id:4,title: 'Template 3', description:'Esta es la descripcion del template 3', 
+      id:4,title: 'Template Software', description:'Esta es la descripcion del template 3', 
       category: 'Software', price: '30$', img: imgTemplate3
     },
     {
-      id:5,title: 'Template 3', description:'Esta es la descripcion del template 3', 
+      id:5,title: 'Template Technology', description:'Esta es la descripcion del template 3', 
       category: 'Technology', price: '30$', img: imgTemplate3
     },
     {
-      id:6,title: 'Template 3', description:'Esta es la descripcion del template 3', 
-      category: 'Technology', price: '30$', img: imgTemplate3
-    },
-    {
-      id:7,title: 'Template 3', description:'Esta es la descripcion del template 3', 
+      id:6,title: 'Template 4', description:'Esta es la descripcion del template 3', 
       category: 'Software', price: '30$', img: imgTemplate3
     },
     
@@ -79,47 +75,86 @@ const  ProductsAndServices = ()  => {
     { id:4,title: 'Software'}
   ]
 
-  const check =  (id) => {
-    console.log('entro',id)
-    // // return console.log(id)
-    dataSelected.map((item) => {
-      console.log(item)
-    })
+  const [checkValidation, setCheckValidation] = useState(false);
+  const [state1, setState1] = useState({
+    gilad: true,
+    jason: false,
+    antoine: false,
+  });
 
-    
-    
+  const validation = () =>  {
+    setData([
+      {
+        id:1,title: 'Template Technology', description:'Esta es la descripcion del template 1', 
+        category: 'Technology', price: '10$', img: imgTemplate1
+      },
+      {
+        id:2,title: 'Template Bussines', description:'Esta es la descripcion del template 2', 
+        category: 'Bussines', price: '20$', img: imgTemplate2 
+      },
+      {
+        id:3,title: 'Template Manager', description:'Esta es la descripcion del template 3', 
+        category: 'Manager', price: '30$', img: imgTemplate3
+      },
+      {
+        id:4,title: 'Template Software', description:'Esta es la descripcion del template 3', 
+        category: 'Software', price: '30$', img: imgTemplate3
+      },
+      {
+        id:5,title: 'Template Technology', description:'Esta es la descripcion del template 3', 
+        category: 'Technology', price: '30$', img: imgTemplate3
+      },
+      {
+        id:6,title: 'Template 4', description:'Esta es la descripcion del template 3', 
+        category: 'Software', price: '30$', img: imgTemplate3
+      }
+    ])
+  }
+  
+
+  
+  const handleChange = (event) => {
+    setState1({
+      ...state1,
+      [event.target.name]: event.target.checked,
+    });
+    console.log('data',state1)
+  };
+
+
+  const check =  (id,personName) => {
     if (id === 2) {
       setData([{
-        id:3,title: 'Template 3', description:'Esta es la descripcion del template 3', 
+        id:3,title: 'Template Technology', description:'Esta es la descripcion del template 3', 
         category: 'Technology', price: '30$', img: imgTemplate3
       }])
     } else if(id === 1) {
-      
       setData([{
-        id:1,title: 'Template 1', description:'Esta es la descripcion del template 1', 
+        id:1,title: 'Template Manager', description:'Esta es la descripcion del template 1', 
         category: 'Manager', price: '10$', img: imgTemplate1
       }])
     } else if ( id === 3) {
       setData([{
-        id:2,title: 'Template 2', description:'Esta es la descripcion del template 2', 
+        id:2,title: 'Template Bussines', description:'Esta es la descripcion del template 2', 
         category: 'Bussines', price: '20$', img: imgTemplate2 
       }])
-    } else {
+    } else if (id === 4) {
       setData([
-        {
-          id:7,title: 'Template 3', description:'Esta es la descripcion del template 3', 
-          category: 'Software', price: '30$', img: imgTemplate3
-        },
-        {
-          id:4,title: 'Template 3', description:'Esta es la descripcion del template 3 22222', 
-          category: 'Software', price: '30$', img: imgTemplate3
-        }
-      ])
+      {
+        id:4,title: 'Template Software', description:'Esta es la descripcion del template 3', 
+        category: 'Software', price: '30$', img: imgTemplate3
+      },
+      {
+        id:6,title: 'Template 4', description:'Esta es la descripcion del template 3', 
+        category: 'Software', price: '30$', img: imgTemplate3
+      },])
+    } else {
+      setCheckValidation(false)
+      
     }
 
   }
-
-
+  
 
     return (
       <> 
@@ -131,11 +166,13 @@ const  ProductsAndServices = ()  => {
                   <MenuList key={data.id}>
                     <MenuItem >
                       <ListItemText>{data.title}</ListItemText>
-                      <Checkbox onClick={() => {check(data.id)}} {...label} />
+                      <Checkbox 
+                         onChange={handleChange}  onClick={() => {{check(data.id); }}} {...label} />
                     </MenuItem>
                   </MenuList>
                 ))
               }
+              <Button variant="contained" color={'success'} onClick={() => {validation({})}}>Traer todos</Button>
           </Paper>
         </Grid>
         
