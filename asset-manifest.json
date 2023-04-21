@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/marketplace-para-clientes/static/css/main.073c9b0a.css",
+    "main.js": "/marketplace-para-clientes/static/js/main.d8f5b903.js",
+    "static/js/787.f6edc199.chunk.js": "/marketplace-para-clientes/static/js/787.f6edc199.chunk.js",
+    "static/media/template3.png": "/marketplace-para-clientes/static/media/template3.0f982e1e4b59a45ec382.png",
+    "index.html": "/marketplace-para-clientes/index.html",
+    "main.073c9b0a.css.map": "/marketplace-para-clientes/static/css/main.073c9b0a.css.map",
+    "main.d8f5b903.js.map": "/marketplace-para-clientes/static/js/main.d8f5b903.js.map",
+    "787.f6edc199.chunk.js.map": "/marketplace-para-clientes/static/js/787.f6edc199.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.d8f5b903.js"
+  ]
+}
